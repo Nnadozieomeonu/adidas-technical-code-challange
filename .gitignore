@@ -1,0 +1,10 @@
+.idea
+email-service/email-service.iml
+email-service/HELP.md
+email-service/.mvn
+public-service/public-service.iml
+public-service/HELP.md
+public-service/.mvn
+subscription-service/.mvn
+subscription-service/HELP.md
+subscription-service/subscription-service.iml
