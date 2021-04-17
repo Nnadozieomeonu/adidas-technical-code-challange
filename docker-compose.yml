@@ -25,7 +25,7 @@ services:
     build: ./discovery-server
     container_name: discovery-server
     ports:
-      - 8761:8761 # Forward the exposed port 8080 to the container to port 8080 on the host machine
+      - 8761:8761 # Forward the exposed port 8761 to the container to port 8761 on the host machine
     networks:
       - adidas-network
     restart: "on-failure"
@@ -43,6 +43,44 @@ services:
       - adidas-network
     restart: "on-failure"
 
+  #back-end Spring Boot Application for email service
+  email-service:
+    #the docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./email-service
+    container_name: email-service
+    ports:
+      - 8880:8880 # Forward the exposed port 8880 to the container to port 8880 on the host machine
+    depends_on:
+      - discovery-server
+    networks:
+      - adidas-network
+    restart: "on-failure"
+
+  #back-end Spring Boot Application for public service
+  public-service:
+    #the docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./public-service
+    container_name: public-service
+    ports:
+      - 8881:8881 # Forward the exposed port 8881 to the container to port 8881 on the host machine
+    depends_on:
+      - discovery-server
+    networks:
+      - adidas-network
+    restart: "on-failure"
+
+  #back-end Spring Boot Application for subscription service
+  subscription-service:
+    #the docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./subscription-service
+    container_name: subscription-service
+    ports:
+      - 8882:8882 # Forward the exposed port 8882 to the container to port 8882 on the host machine
+    depends_on:
+      - discovery-server
+    networks:
+      - adidas-network
+    restart: "on-failure"
 
 # Names our volume
 volumes:
