@@ -165,7 +165,6 @@ services:
     container_name: authentication-service
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
-      RABBIT_HOST: rabbitmq
       MYSQL_USER: root
       MYSQL_PASSWORD: password
       MYSQL_JDBC_URL: jdbc:mysql://docker-mysql:3306/authorizationdatabase?createDatabaseIfNotExist=true
@@ -176,11 +175,9 @@ services:
     links:
       - docker-mysql
       - discovery-server
-      - rabbitmq
     depends_on:
       - docker-mysql
       - discovery-server
-      - rabbitmq
 
 # Names our volume
 volumes:
