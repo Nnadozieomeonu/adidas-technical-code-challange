@@ -14,3 +14,6 @@ discovery-server/HELP.md
 api-gateway-service/api-gateway-service.iml
 api-gateway-service/HELP.md
 api-gateway-service/.mvn
+authentication-service/authentication-service.iml
+authentication-service/HELP.md
+authentication-service/.mvn

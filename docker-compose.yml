@@ -1,12 +1,35 @@
 version: '3.3'
 services:
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    hostname: "rabbitmq"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    labels:
+      NAME: "rabbitmq"
+    networks:
+      - adidas-network
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+
+
   docker-mysql:
     image: mysql:5.7
     restart: always
     environment:
       # Password for root access
-      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: keycloakdb
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - '3306:3306'
@@ -16,19 +39,48 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
-    networks:
-      - adidas-network
+
+  keycloak:
+    image: jboss/keycloak
+    container_name: "keycloak"
+    command:
+      - "-b"
+      - "0.0.0.0"
+      - "-Dkeycloak.migration.action=import"
+      - "-Dkeycloak.migration.provider=dir"
+      - "-Dkeycloak.migration.dir=/config/"
+      - "-Dkeycloak.migration.strategy=IGNORE_EXISTING"
+    volumes:
+      - ./config:/config/
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: password
+      DB_VENDOR: mysql
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      DB_ADDR: docker-mysql
+      DB_PORT: 3306
+      DB_DATABASE: keycloakdb
+    ports:
+      - 8087:8080
+    depends_on:
+      - docker-mysql
 
   #back-end Spring Boot Application for service discovery service
   discovery-server:
     #the docker file in scrum-app build the jar and provides the docker image with the following name.
     build: ./discovery-server
     container_name: discovery-server
+    mem_limit: 350m
     ports:
       - 8761:8761 # Forward the exposed port 8761 to the container to port 8761 on the host machine
     networks:
       - adidas-network
-    restart: "on-failure"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://discovery-server:8761" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   #back-end Spring Boot Application for api gateway
   api-gateway:
@@ -37,50 +89,98 @@ services:
     container_name: api-gateway-service
     ports:
       - 8080:8080 # Forward the exposed port 8080 to the container to port 8080 on the host machine
-    depends_on:
-      - discovery-server
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
     networks:
       - adidas-network
-    restart: "on-failure"
+    links:
+      - discovery-server
+      - keycloak
+    depends_on:
+      - discovery-server
+      - keycloak
 
   #back-end Spring Boot Application for email service
   email-service:
     #the docker file in scrum-app build the jar and provides the docker image with the following name.
     build: ./email-service
     container_name: email-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+      RABBIT_HOST: rabbitmq
     ports:
       - 8880:8880 # Forward the exposed port 8880 to the container to port 8880 on the host machine
-    depends_on:
-      - discovery-server
     networks:
       - adidas-network
-    restart: "on-failure"
+    links:
+      - discovery-server
+      - rabbitmq
+    depends_on:
+      - discovery-server
+      - rabbitmq
+
 
   #back-end Spring Boot Application for public service
   public-service:
     #the docker file in scrum-app build the jar and provides the docker image with the following name.
     build: ./public-service
     container_name: public-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+      RABBIT_HOST: rabbitmq
     ports:
       - 8881:8881 # Forward the exposed port 8881 to the container to port 8881 on the host machine
-    depends_on:
-      - discovery-server
     networks:
       - adidas-network
-    restart: "on-failure"
+    links:
+      - discovery-server
+      - rabbitmq
+    depends_on:
+      - discovery-server
+      - rabbitmq
+
 
   #back-end Spring Boot Application for subscription service
   subscription-service:
     #the docker file in scrum-app build the jar and provides the docker image with the following name.
     build: ./subscription-service
     container_name: subscription-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+      RABBIT_HOST: rabbitmq
     ports:
       - 8882:8882 # Forward the exposed port 8882 to the container to port 8882 on the host machine
-    depends_on:
-      - discovery-server
     networks:
       - adidas-network
-    restart: "on-failure"
+    links:
+      - discovery-server
+      - rabbitmq
+    depends_on:
+      - discovery-server
+      - rabbitmq
+  #back-end Spring Boot Application for subscription service
+  authentication-service:
+    #the docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./authentication-service
+    container_name: authentication-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+      RABBIT_HOST: rabbitmq
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_JDBC_URL: jdbc:mysql://docker-mysql:3306/authorizationdatabase?createDatabaseIfNotExist=true
+    ports:
+      - 8884:8884 # Forward the exposed port 8882 to the container to port 8882 on the host machine
+    networks:
+      - adidas-network
+    links:
+      - docker-mysql
+      - discovery-server
+      - rabbitmq
+    depends_on:
+      - docker-mysql
+      - discovery-server
+      - rabbitmq
 
 # Names our volume
 volumes:
@@ -89,4 +189,6 @@ volumes:
 # Services Network
 networks:
   adidas-network:
+    name: adidas-network
+    driver: bridge
 
