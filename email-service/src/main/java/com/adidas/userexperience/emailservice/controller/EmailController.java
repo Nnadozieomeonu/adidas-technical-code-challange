@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,8 +27,7 @@ public class EmailController {
     @Value("${spring.mail.from}")
     private String from;
 
-    //You're in. Welcome to adidas.
-
+    @PostMapping
     public void sendEmail(@RequestBody EmailMessage emailMessage,
                           BindingResult bindingResult) throws Exception{
         if(bindingResult.hasErrors()){

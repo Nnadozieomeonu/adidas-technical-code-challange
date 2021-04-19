@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import java.util.function.Consumer;
@@ -15,6 +16,7 @@ import java.util.function.Consumer;
 @SpringBootApplication
 @EnableEurekaClient
 @RequiredArgsConstructor
+@EnableFeignClients
 public class SubscriptionServiceApplication {
 
 	@Autowired
@@ -25,7 +27,7 @@ public class SubscriptionServiceApplication {
 		return subscription -> {
 			System.out.println(subscription);
 			EmailSubscription emailSubscription = subscriptionService.save(subscription);
-			System.out.println("Saved Subscription \n-----------"+emailSubscription+"\n -------------");
+			System.out.println("Saved Subscription and Send email \n-----------"+emailSubscription+"\n -------------");
 		};
 	}
 

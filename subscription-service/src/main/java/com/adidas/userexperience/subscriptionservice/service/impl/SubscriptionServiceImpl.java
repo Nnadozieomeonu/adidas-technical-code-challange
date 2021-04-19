@@ -1,5 +1,7 @@
 package com.adidas.userexperience.subscriptionservice.service.impl;
 
+import com.adidas.userexperience.subscriptionservice.client.EmailClient;
+import com.adidas.userexperience.subscriptionservice.dto.EmailMessage;
 import com.adidas.userexperience.subscriptionservice.dto.EmailSubscriptionDto;
 import com.adidas.userexperience.subscriptionservice.entity.EmailSubscription;
 import com.adidas.userexperience.subscriptionservice.repository.SubscriptionRepository;
@@ -17,14 +19,26 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Autowired
     private SubscriptionRepository subscriptionRepository;
 
+    @Autowired
+    private EmailClient emailClient;
+
     public EmailSubscription save(EmailSubscriptionDto subscription){
         EmailSubscription emailSubscription = new EmailSubscription();
+        EmailMessage emailMessage = new EmailMessage();
         emailSubscription.setEmail(subscription.getEmail());
         emailSubscription.setConsent(subscription.isConsent());
         emailSubscription.setDob(subscription.getDob());
         emailSubscription.setGender(subscription.getGender());
         emailSubscription.setFirstName(subscription.getFirstName());
-        return subscriptionRepository.save(emailSubscription);
+        emailSubscription = subscriptionRepository.save(emailSubscription);
+        try {
+            this.sendEmail(emailMessage,emailSubscription);
+            System.out.println("Sending to "+emailMessage.toString()+" Successful");
+        } catch (Exception e) {
+            System.out.println("Sending to "+emailMessage.toString()+" failed");
+            e.printStackTrace();
+        }
+        return emailSubscription;
     }
 
     @Override
@@ -42,5 +56,23 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public EmailSubscription getSubscription(int id) {
         return subscriptionRepository.findById(id);
+    }
+
+    @Override
+    public String sendEmail(EmailMessage emailMessage, EmailSubscription emailSubscription) throws Exception {
+        emailMessage.setSubject("You're in. Welcome to adidas.");
+        emailMessage.setName(emailSubscription.getFirstName());
+        emailMessage.setEmail(emailSubscription.getEmail());
+        emailMessage.setMessage("Dear " +(emailSubscription.getFirstName() == "" ? "Customer" : emailSubscription.getFirstName().toUpperCase())+" \n\n"+
+                "Thank you for signing up, start your journey today. \n\n" +
+                "Welcome to the wonderful world of adidas. We are pioneers in sport, fashion and performance, which you are soon to witness. \n\n" +
+                "Thanks for joining, we will be happy to show you around.");
+        try{
+            emailClient.sendEmail(emailMessage);
+            return "Email sent successfully to "+emailMessage.toString();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return "Email failed to send "+emailMessage.toString();
     }
 }
