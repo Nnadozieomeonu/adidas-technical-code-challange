@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.adidas.userexperience</groupId>
-	<artifactId>emailSubscriptionDto-service</artifactId>
+	<artifactId>subscription-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>emailSubscriptionDto-service</name>
-	<description>Secured emailSubscriptionDto service</description>
+	<name>subscription-service</name>
+	<description>Secured subscription service</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
