@@ -5,9 +5,9 @@ email-service/.mvn
 public-service/public-service.iml
 public-service/HELP.md
 public-service/.mvn
-subscription-service/.mvn
-subscription-service/HELP.md
-subscription-service/subscription-service.iml
+emailSubscriptionDto-service/.mvn
+emailSubscriptionDto-service/HELP.md
+emailSubscriptionDto-service/emailSubscriptionDto-service.iml
 discovery-server/discovery-server.iml
 discovery-server/.mvn
 discovery-server/HELP.md

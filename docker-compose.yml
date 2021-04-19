@@ -1,19 +1,19 @@
-version: '3.3'
+version: '3.7'
 services:
 
   rabbitmq:
     image: "rabbitmq:3-management"
     hostname: "rabbitmq"
     environment:
-      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "guest"
-      RABBITMQ_DEFAULT_PASS: "guest"
-      RABBITMQ_DEFAULT_VHOST: "/"
+      RABBITMQ_ERLANG_COOKIE: SWQOKODSQALRPCLNMEQG
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
     ports:
-      - "15672:15672"
-      - "5672:5672"
+      - 15672:15672
+      - 5672:5672
     labels:
-      NAME: "rabbitmq"
+      NAME: rabbitmq
     networks:
       - adidas-network
     volumes:
@@ -39,6 +39,8 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+    networks:
+      - adidas-network
 
   keycloak:
     image: jboss/keycloak
@@ -65,6 +67,8 @@ services:
       - 8087:8080
     depends_on:
       - docker-mysql
+    networks:
+      - adidas-network
 
   #back-end Spring Boot Application for service discovery service
   discovery-server:
@@ -81,6 +85,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+    restart: on-failure
 
   #back-end Spring Boot Application for api gateway
   api-gateway:
@@ -99,6 +104,29 @@ services:
     depends_on:
       - discovery-server
       - keycloak
+    restart: on-failure
+
+  authurization-server:
+    #the docker file in scrum-app build the jar and provides the docker image with the following name.
+    build: ./authorization-service
+    container_name: authurization-server
+    ports:
+      - 8884:8884 # Forward the exposed port 8080 to the container to port 8080 on the host machine
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+    networks:
+      - adidas-network
+    links:
+      - discovery-server
+      - rabbitmq
+    depends_on:
+      - discovery-server
+      - rabbitmq
+    restart: on-failure
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
 
   #back-end Spring Boot Application for email service
   email-service:
@@ -118,6 +146,7 @@ services:
     depends_on:
       - discovery-server
       - rabbitmq
+    restart: on-failure
 
 
   #back-end Spring Boot Application for public service
@@ -138,7 +167,7 @@ services:
     depends_on:
       - discovery-server
       - rabbitmq
-
+    restart: on-failure
 
   #back-end Spring Boot Application for subscription service
   subscription-service:
@@ -158,26 +187,7 @@ services:
     depends_on:
       - discovery-server
       - rabbitmq
-  #back-end Spring Boot Application for subscription service
-  authentication-service:
-    #the docker file in scrum-app build the jar and provides the docker image with the following name.
-    build: ./authentication-service
-    container_name: authentication-service
-    environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
-      MYSQL_JDBC_URL: jdbc:mysql://docker-mysql:3306/authorizationdatabase?createDatabaseIfNotExist=true
-    ports:
-      - 8884:8884 # Forward the exposed port 8882 to the container to port 8882 on the host machine
-    networks:
-      - adidas-network
-    links:
-      - docker-mysql
-      - discovery-server
-    depends_on:
-      - docker-mysql
-      - discovery-server
+    restart: on-failure
 
 # Names our volume
 volumes:
