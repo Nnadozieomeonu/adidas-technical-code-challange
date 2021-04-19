@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.ValidationException;
 
 @RestController
-@RequestMapping("/api/v1/email")
+@RequestMapping("/api/v1/email/")
 @RequiredArgsConstructor
 public class EmailController {
 

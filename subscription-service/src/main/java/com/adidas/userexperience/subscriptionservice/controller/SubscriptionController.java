@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/v1/subscription")
+@RequestMapping("/api/v1/subscription/")
 @RestController
 @RequiredArgsConstructor
 public class SubscriptionController {
@@ -28,12 +28,12 @@ public class SubscriptionController {
         return subscriptionService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public EmailSubscription getSubscriptionById(@PathVariable("id") int id){
         return subscriptionService.getSubscription(id);
     }
 
-    @GetMapping("/cancel/{id}")
+    @GetMapping("cancel/{id}")
     public EmailSubscription cancelASubscription(@PathVariable("id") int id){
         return subscriptionService.cancelSubscription(id);
     }
