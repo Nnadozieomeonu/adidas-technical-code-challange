@@ -253,5 +253,10 @@ ERROR: Service 'authorization-service' failed to build
 
 I setup the a local spring boot application api documentation using springfox swagger Docket dependecy, however for the authenticated services it was not made public. so i dropped the service and documented a rough documentation online [API On Swagger.io Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0)
 
+## Microservice architecture diagram
 
-## Post Request Screenshot
+## Jenkins Pipeline Sketch
+
+## Jenkins Pipeline Sketch
+
+## Application Request Screenshot
