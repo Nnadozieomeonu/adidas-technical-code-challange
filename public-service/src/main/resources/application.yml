@@ -17,7 +17,7 @@ spring:
             batchBufferLimit: 100000
             batchTimeout: 5000
   rabbitmq:
-    host: localhost
+    host: rabbitmq
     username: guest
     password: guest
     port: 5672
@@ -31,7 +31,7 @@ logging:
         amqp: DEBUG
 
 server:
-  port: 0
+  port: 7602
 
 
 eureka:
@@ -39,6 +39,6 @@ eureka:
     instance-id: ${spring.application.name}-${random.uuid}
   client:
     service-url:
-      default-zone: http://localhost:8761/eureka
+      default-zone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka/}
     fetch-registry: true
     register-with-eureka: true
