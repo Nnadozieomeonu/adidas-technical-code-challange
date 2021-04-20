@@ -7,23 +7,22 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmailMessage {
-    @Null
+
     private String name;
 
     @NotNull
-    @Email
+    @Email(message = "Email field can not be null")
     private String email;
 
-    @NotNull
+    @NotNull(message = "Subject field can not be null")
     private String subject;
 
-    @NotNull
+    @NotNull(message = "Message field can not be null")
     @Min(10)
     private String message;
 }

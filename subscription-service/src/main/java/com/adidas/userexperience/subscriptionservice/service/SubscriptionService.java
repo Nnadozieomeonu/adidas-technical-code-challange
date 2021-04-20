@@ -19,4 +19,5 @@ public interface SubscriptionService {
 
     public String sendEmail(EmailMessage emailMessage, EmailSubscription emailSubscription) throws Exception;
 
+
 }

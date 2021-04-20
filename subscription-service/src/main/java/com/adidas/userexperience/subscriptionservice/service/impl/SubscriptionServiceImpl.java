@@ -4,9 +4,12 @@ import com.adidas.userexperience.subscriptionservice.client.EmailClient;
 import com.adidas.userexperience.subscriptionservice.dto.EmailMessage;
 import com.adidas.userexperience.subscriptionservice.dto.EmailSubscriptionDto;
 import com.adidas.userexperience.subscriptionservice.entity.EmailSubscription;
+import com.adidas.userexperience.subscriptionservice.exceptionhandlers.ResourceNotFoundException;
 import com.adidas.userexperience.subscriptionservice.repository.SubscriptionRepository;
 import com.adidas.userexperience.subscriptionservice.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Autowired
     private EmailClient emailClient;
+
+    private final Logger log = LoggerFactory.getLogger(SubscriptionServiceImpl.class);
+
 
     public EmailSubscription save(EmailSubscriptionDto subscription){
         EmailSubscription emailSubscription = new EmailSubscription();
@@ -55,7 +61,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public EmailSubscription getSubscription(int id) {
-        return subscriptionRepository.findById(id);
+        return subscriptionRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Email subscription not found"));
     }
 
     @Override
@@ -75,4 +81,5 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         }
         return "Email failed to send "+emailMessage.toString();
     }
+
 }
