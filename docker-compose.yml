@@ -74,10 +74,8 @@ services:
       - adidas-network
     links:
       - discovery-server
-      - keycloak
     depends_on:
       - discovery-server
-      - keycloak
     restart: on-failure
 
   authorization-server:
