@@ -1,6 +1,6 @@
 ## Adidas Technical Challenge [Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0)
 
-![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/adidas-logo-e1468257076328.jpg?raw=true)
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image001.jpg?raw=true)
 
 This are my notes on how how to set up the underlisted service for testing, my microservice architecture comprises of the below microservice services.
 
@@ -260,3 +260,11 @@ I setup the a local spring boot application api documentation using springfox sw
 ## Jenkins Pipeline Sketch
 
 ## Application Request Screenshot
+
+
+
+
+
+
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image002.png?raw=true)
