@@ -27,8 +27,8 @@ services:
     environment:
       # Password for root access
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: keycloakdb
-      MYSQL_USER: keycloak
+      MYSQL_DATABASE: user
+      MYSQL_USER: password
       MYSQL_PASSWORD: password
     ports:
       # <Port exposed> : < MySQL Port running inside container>
@@ -39,35 +39,6 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
-    networks:
-      - adidas-network
-
-
-  keycloak:
-    image: jboss/keycloak
-    container_name: "keycloak"
-    command:
-      - "-b"
-      - "0.0.0.0"
-      - "-Dkeycloak.migration.action=import"
-      - "-Dkeycloak.migration.provider=dir"
-      - "-Dkeycloak.migration.dir=/config/"
-      - "-Dkeycloak.migration.strategy=IGNORE_EXISTING"
-    volumes:
-      - ./config:/config/
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: password
-      DB_VENDOR: mysql
-      DB_USER: keycloak
-      DB_PASSWORD: password
-      DB_ADDR: docker-mysql
-      DB_PORT: 3306
-      DB_DATABASE: keycloakdb
-    ports:
-      - 8087:8080
-    depends_on:
-      - docker-mysql
     networks:
       - adidas-network
 
@@ -94,9 +65,11 @@ services:
     build: ./api-gateway-service
     container_name: api-gateway-service
     ports:
-      - 8080:8080 # Forward the exposed port 8080 to the container to port 8080 on the host machine
+      - 9090:9090 # Forward the exposed port 8080 to the container to port 8080 on the host machine
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     networks:
       - adidas-network
     links:
@@ -107,12 +80,12 @@ services:
       - keycloak
     restart: on-failure
 
-  authurization-server:
+  authorization-server:
     #the docker file in scrum-app build the jar and provides the docker image with the following name.
     build: ./authorization-service
-    container_name: authurization-server
+    container_name: authorization-server
     ports:
-      - 8884:8884 # Forward the exposed port 8080 to the container to port 8080 on the host machine
+      - 7600:7600 # Forward the exposed port 8080 to the container to port 8080 on the host machine
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
     networks:
@@ -142,17 +115,17 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
       RABBIT_HOST: rabbitmq
     ports:
-      - 8880:8880 # Forward the exposed port 8880 to the container to port 8880 on the host machine
+      - 7601:7601 # Forward the exposed port 8880 to the container to port 8880 on the host machine
     networks:
       - adidas-network
     links:
       - discovery-server
-      - authurization-server
+      - authorization-server
       - api-gateway
       - rabbitmq
     depends_on:
       - discovery-server
-      - authurization-server
+      - authorization-server
       - api-gateway
       - rabbitmq
     restart: on-failure
@@ -167,7 +140,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
       RABBIT_HOST: rabbitmq
     ports:
-      - 8881:8881 # Forward the exposed port 8881 to the container to port 8881 on the host machine
+      - 7602:7602 # Forward the exposed port 8881 to the container to port 8881 on the host machine
     networks:
       - adidas-network
     links:
@@ -189,18 +162,18 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
       RABBIT_HOST: rabbitmq
     ports:
-      - 8882:8882 # Forward the exposed port 8882 to the container to port 8882 on the host machine
+      - 7603:7603 # Forward the exposed port 8882 to the container to port 8882 on the host machine
     networks:
       - adidas-network
     links:
       - discovery-server
       - api-gateway
-      - authurization-server
+      - authorization-server
       - rabbitmq
     depends_on:
       - discovery-server
       - api-gateway
-      - authurization-server
+      - authorization-server
       - rabbitmq
     restart: on-failure
 
