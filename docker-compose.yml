@@ -78,10 +78,10 @@ services:
       - discovery-server
     restart: on-failure
 
-  authorization-server:
+  auth-service:
     #the docker file in scrum-app build the jar and provides the docker image with the following name.
-    build: ./authorization-service
-    container_name: authorization-server
+    build: ./auth
+    container_name: auth-service
     ports:
       - 7600:7600 # Forward the exposed port 8080 to the container to port 8080 on the host machine
     environment:
@@ -99,10 +99,6 @@ services:
       - discovery-server
       - rabbitmq
     restart: on-failure
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "50m"
 
   #back-end Spring Boot Application for email service
   email-service:
@@ -118,12 +114,12 @@ services:
       - adidas-network
     links:
       - discovery-server
-      - authorization-server
+      - auth-service
       - api-gateway
       - rabbitmq
     depends_on:
       - discovery-server
-      - authorization-server
+      - auth-service
       - api-gateway
       - rabbitmq
     restart: on-failure
@@ -166,12 +162,12 @@ services:
     links:
       - discovery-server
       - api-gateway
-      - authorization-server
+      - auth-service
       - rabbitmq
     depends_on:
       - discovery-server
       - api-gateway
-      - authorization-server
+      - auth-service
       - rabbitmq
     restart: on-failure
 
