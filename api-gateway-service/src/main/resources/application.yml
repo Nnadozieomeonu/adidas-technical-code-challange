@@ -1,0 +1,75 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+
+server:
+  port: 9090
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    gateway:
+      discovery:
+        locator:
+          lower-case-service-id: true
+          enabled: true
+      routes:
+        - id: email-service
+          uri: lb://email-service
+          predicates:
+            - Path=/api/v1/email/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: email-service
+                fallbackuri: forward:/emailFallBack
+        - id: subscription-service
+          uri: lb://subscription-service
+          predicates:
+            - Path=/api/v1/subscription/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: subscription-service
+                fallbackuri: forward:/subscriptionFallBack
+        - id: public-service
+          uri: lb://public-service
+          predicates:
+            - Path=/api/v1/public/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: public-service
+                fallbackuri: forward:/publicFallBack
+        - id: authorization-service
+          uri: lb://authorization-service
+          predicates:
+            - Path=/oauth/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: authorization-service
+                fallbackuri: forward:/authorizationFallBack
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
+
+
