@@ -4,14 +4,22 @@
 
 This are my notes on how how to set up the underlisted service for testing, my microservice architecture comprises of the below microservice services.
 
-[Eureka Discovery Service](http://start.spring.io)  
+[Eureka Discovery Service](http://start.spring.io).
+
 [API Gateway Service](http://start.spring.io).
+
 [Service Authorization service](http://start.spring.io).
-[Mysql Database Server](http://start.spring.io)
-[Rabbitmq Queuing Service](http://start.spring.io)
-[Public Service](http://start.spring.io)
-[Subscription Service](http://start.spring.io)
-[Email Service](http://start.spring.io)
+
+[Mysql Database Server](http://start.spring.io).
+
+[Rabbitmq Queuing Service](http://start.spring.io).
+
+[Public Service](http://start.spring.io).
+
+[Subscription Service](http://start.spring.io).
+
+[Email Service](http://start.spring.io).
+
 
 
 ## Manual Set-up Guide
