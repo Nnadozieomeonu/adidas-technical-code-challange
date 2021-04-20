@@ -76,7 +76,7 @@ logging:
         amqp: DEBUG  
   
 server:  
-  port: 7602  
+  port: 0  
   
   
 eureka:  
@@ -103,7 +103,7 @@ eureka:
     instance-id: ${spring.application.name}-${random.uuid}  
   
 server:  
-  port: 7603  
+  port: 0  
   
 spring:  
   cloud:  
@@ -132,8 +132,8 @@ spring:
  properties:  
       hibernate:  
         dialect: org.hibernate.dialect.H2Dialect  
-        show\_sql: true  
-        format\_sql: true  
+        show_sql: true  
+        format_sql: true  
   
   
 security:  
@@ -192,7 +192,7 @@ security:
       client-secret: pin  
   
 server:  
-  port: 7601  
+  port: 0  
   
   
 eureka:  
@@ -212,7 +212,7 @@ In the notification service i use mailtrap.io, you can your mailtrap.io configur
 *resources/application.properties*
 
 ```
-server.port=7600  
+server.port=0  
 spring.application.name=auth-service  
 spring.datasource.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&useSSL=false  
 spring.datasource.username=root  
