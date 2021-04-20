@@ -1,0 +1,40 @@
+spring:
+  mail:
+    host: smtp.mailtrap.io
+    port: 2525
+    username: 94e26234716d84
+    password: 2d2245724f1aed
+    from: "Adidas Store <no-reply@adidas.com>"
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
+  application:
+    name: email-service
+
+
+security:
+  oauth2:
+    resource:
+      token-info-uri: http://localhost:9090/oauth/check_token
+    client:
+      client-id: mobile
+      client-secret: pin
+
+server:
+  port: 0
+
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}-${random.uuid}
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true

@@ -1,13 +1,21 @@
 spring:
   cloud:
     stream:
-      source: subscriptionEventSupplier
+      source: notificationEventSupplier
       bindings:
-        subscriptionEventSupplier-out-0:
-          destination: notification-subscription
+        notificationEventSupplier-out-0:
+          destination: notification-events
     loadbalancer:
       ribbon:
         enabled: false
+    rabbit:
+      bindings:
+        processTxnRequest-out-0:
+          producer:
+            batchingEnabled: true
+            batchSize: 500
+            batchBufferLimit: 100000
+            batchTimeout: 5000
   rabbitmq:
     host: localhost
     username: guest
@@ -16,14 +24,11 @@ spring:
   application:
     name: public-service
 
-
-security:
-  oauth2:
-    resource:
-      token-info-uri: http://localhost:50911/oauth/check_token
-    client:
-      client-id: mobile
-      client-secret: pin
+logging:
+  level:
+    org:
+      springframework:
+        amqp: DEBUG
 
 server:
   port: 0

@@ -77,6 +77,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
             emailClient.sendEmail(emailMessage);
             return "Email sent successfully to "+emailMessage.toString();
         } catch (Exception e){
+            //Email will not be sent out form the public url
             e.printStackTrace();
         }
         return "Email failed to send "+emailMessage.toString();

@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import java.util.function.Consumer;
@@ -26,10 +25,9 @@ public class SubscriptionServiceApplication {
 	private SubscriptionService subscriptionService;
 
 	@Bean
-	public Consumer<EmailSubscriptionDto> subscriptionEventSupplier(){
+	public Consumer<EmailSubscriptionDto> notificationEventSupplier(){
 		return subscription -> {
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Authorization", subscription.getToken());
+			System.out.println("Subscribed");
 			EmailSubscription emailSubscription = subscriptionService.save(subscription);
 			System.out.println("Saved Subscription and Send email \n-----------"+emailSubscription+"\n -------------");
 		};
