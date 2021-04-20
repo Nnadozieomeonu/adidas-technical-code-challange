@@ -16,10 +16,10 @@ This are my notes on how how to set up the underlisted service for testing, my m
 
 ## Manual Set-up Guide
 
-1. Clone The master branch  using the below command  `` `git clone https://github.com/Nnadozieomeonu/adidas-technical-code-challange.git` ``
+1. Clone The master branch  using the below command  `` git clone https://github.com/Nnadozieomeonu/adidas-technical-code-challange.git ``
 2. make sure you have docker run on your machine [Docker website](https://www.docker.com/)
-3. Start up your rabbitmq by running this docker command on your terminal  `` `docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management` ``  i used rabbitmq insted of kafaka cos of this was  quick prototype implementation.
-4. Start up your mysql by running this docker command on your terminal `` `docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag` ``
+3. Start up your rabbitmq by running this docker command on your terminal  `` docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management ``  i used rabbitmq insted of kafaka cos of this was  quick prototype implementation.
+4. Start up your mysql by running this docker command on your terminal `` docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag ``
 5. import the directory into your inteliij IDE.
 6. import maven dependency for the project
 7. configure the spring start up configuration
@@ -241,12 +241,12 @@ ERROR: Service 'authorization-service' failed to build
 ```
 
 
-1. Clone The master branch  using the below command  `` `git clone https://github.com/Nnadozieomeonu/adidas-technical-code-challange.git` ``
+1. Clone The master branch  using the below command  `` git clone https://github.com/Nnadozieomeonu/adidas-technical-code-challange.git ``
 2. make sure you have docker run on your machine [Docker website](https://www.docker.com/)
-3. Navigate to the clone directory  `` `cd ~/{path}/adidas-technical-code-challange` ``
-4. Type the below command to build your docker images `` `docker-compose build` ``
-5. Upon successful build process you can run the service  `` `docker-compose up` ``
-6. To bring down the service use the below command `` `docker-compose down` ``
+3. Navigate to the clone directory  `` cd ~/{path}/adidas-technical-code-challange ``
+4. Type the below command to build your docker images `` docker-compose build ``
+5. Upon successful build process you can run the service  `` docker-compose up` ``
+6. To bring down the service use the below command `` docker-compose down ``
 
 
 [API On Swagger.io Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0)
