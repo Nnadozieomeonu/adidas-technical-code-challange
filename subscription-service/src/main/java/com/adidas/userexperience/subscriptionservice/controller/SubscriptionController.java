@@ -57,7 +57,7 @@ public class SubscriptionController {
      * @param id
      * @return
      */
-    @GetMapping("cancel/{id}")
+    @PutMapping("cancel/{id}")
     public ResponseEntity<EmailSubscription> cancelASubscription(@PathVariable("id") int id){
         return ResponseEntity.ok(subscriptionService.cancelSubscription(id));
     }
