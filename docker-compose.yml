@@ -42,6 +42,7 @@ services:
     networks:
       - adidas-network
 
+
   keycloak:
     image: jboss/keycloak
     container_name: "keycloak"
@@ -117,9 +118,13 @@ services:
     networks:
       - adidas-network
     links:
+      - docker-mysql
+      - api-gateway
       - discovery-server
       - rabbitmq
     depends_on:
+      - docker-mysql
+      - api-gateway
       - discovery-server
       - rabbitmq
     restart: on-failure
@@ -142,9 +147,13 @@ services:
       - adidas-network
     links:
       - discovery-server
+      - authurization-server
+      - api-gateway
       - rabbitmq
     depends_on:
       - discovery-server
+      - authurization-server
+      - api-gateway
       - rabbitmq
     restart: on-failure
 
@@ -163,9 +172,11 @@ services:
       - adidas-network
     links:
       - discovery-server
+      - api-gateway
       - rabbitmq
     depends_on:
       - discovery-server
+      - api-gateway
       - rabbitmq
     restart: on-failure
 
@@ -183,9 +194,13 @@ services:
       - adidas-network
     links:
       - discovery-server
+      - api-gateway
+      - authurization-server
       - rabbitmq
     depends_on:
       - discovery-server
+      - api-gateway
+      - authurization-server
       - rabbitmq
     restart: on-failure
 

@@ -22,22 +22,41 @@ public class SubscriptionController {
     @Autowired
     private SubscriptionService subscriptionService;
 
+    /**
+     *
+     * @param emailSubscription
+     * @return
+     */
     @PostMapping
     public ResponseEntity<EmailSubscription> createSubscripton(@Valid @RequestBody EmailSubscriptionDto emailSubscription)
     {
         return ResponseEntity.ok(subscriptionService.save(emailSubscription));
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping
     public ResponseEntity<List<EmailSubscription>> allSubscription(){
         return ResponseEntity.ok(subscriptionService.findAll());
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("{id}")
     public ResponseEntity<EmailSubscription> getSubscriptionById(@PathVariable("id") int id){
         return ResponseEntity.ok(subscriptionService.getSubscription(id));
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("cancel/{id}")
     public ResponseEntity<EmailSubscription> cancelASubscription(@PathVariable("id") int id){
         return ResponseEntity.ok(subscriptionService.cancelSubscription(id));

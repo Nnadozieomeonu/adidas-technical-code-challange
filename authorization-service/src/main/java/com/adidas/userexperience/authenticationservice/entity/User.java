@@ -13,6 +13,10 @@ public class User implements Serializable  {
     public User() {
     }
 
+    /**
+     *
+     * @param user
+     */
     public User(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();

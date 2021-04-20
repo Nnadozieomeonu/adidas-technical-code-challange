@@ -22,6 +22,11 @@ public class PublicController {
     private final StreamBridge streamBridge;
 
 
+    /**
+     *
+     * @param emailSubscriptionDto
+     * @return
+     */
     @PostMapping
     public ResponseEntity<String> index(@Valid @RequestBody EmailSubscriptionDto emailSubscriptionDto){
         final boolean isPublished = streamBridge.send("notificationEventSupplier-out-0", emailSubscriptionDto);

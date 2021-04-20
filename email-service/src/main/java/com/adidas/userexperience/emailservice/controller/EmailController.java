@@ -27,6 +27,12 @@ public class EmailController {
     @Value("${spring.mail.from}")
     private String from;
 
+    /**
+     *
+     * @param emailMessage
+     * @param bindingResult
+     * @throws Exception
+     */
     @PostMapping
     public void sendEmail(@RequestBody EmailMessage emailMessage,
                           BindingResult bindingResult) throws Exception{

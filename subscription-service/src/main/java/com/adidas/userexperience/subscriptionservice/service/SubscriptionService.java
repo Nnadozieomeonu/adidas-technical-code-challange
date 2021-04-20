@@ -9,15 +9,41 @@ import java.util.List;
 
 public interface SubscriptionService {
 
-    public EmailSubscription save(EmailSubscriptionDto subscription);
+    /**
+     *
+     * @param subscription
+     * @return
+     */
+    EmailSubscription save(EmailSubscriptionDto subscription);
 
-    public EmailSubscription cancelSubscription(int id);
+    /**
+     *
+     * @param id
+     * @return
+     */
+    EmailSubscription cancelSubscription(int id);
 
-    public List<EmailSubscription> findAll();
+    /**
+     *
+     * @return
+     */
+    List<EmailSubscription> findAll();
 
-    public EmailSubscription getSubscription(int id);
+    /**
+     *
+     * @param id
+     * @return
+     */
+    EmailSubscription getSubscription(int id);
 
-    public String sendEmail(EmailMessage emailMessage, EmailSubscription emailSubscription) throws Exception;
+    /**
+     *
+     * @param emailMessage
+     * @param emailSubscription
+     * @return
+     * @throws Exception
+     */
+    String sendEmail(EmailMessage emailMessage, EmailSubscription emailSubscription) throws Exception;
 
 
 }

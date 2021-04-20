@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "email-service", name = "email-service", configuration = FeignClientInterceptor.class)
 public interface EmailClient {
 
+    /**
+     *
+     * @param emailMessage
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/api/v1/email/", consumes = "application/json", headers = {"Authorization: Bearer "})
     String sendEmail(EmailMessage emailMessage);
 

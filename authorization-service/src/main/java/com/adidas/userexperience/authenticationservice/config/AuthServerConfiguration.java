@@ -24,21 +24,40 @@ public class AuthServerConfiguration implements AuthorizationServerConfigurer {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    /**
+     * JDBC Token Store
+     * @return
+     */
     @Bean
     TokenStore jdbcTokenStore(){
         return new JdbcTokenStore(dataSource);
     }
 
+    /**
+     *
+     * @param security
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.checkTokenAccess("isAuthenticated()").tokenKeyAccess("permitAll()");
     }
 
+    /**
+     *
+     * @param client
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer client) throws Exception {
         client.jdbc(dataSource).passwordEncoder(passwordEncoder);
     }
 
+    /**
+     *
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(jdbcTokenStore());

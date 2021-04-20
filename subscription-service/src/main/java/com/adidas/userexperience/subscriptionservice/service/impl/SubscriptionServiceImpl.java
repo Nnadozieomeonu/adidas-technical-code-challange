@@ -28,6 +28,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     private final Logger log = LoggerFactory.getLogger(SubscriptionServiceImpl.class);
 
 
+    /**
+     *
+     * @param subscription
+     * @return
+     */
     public EmailSubscription save(EmailSubscriptionDto subscription){
         EmailSubscription emailSubscription = new EmailSubscription();
         EmailMessage emailMessage = new EmailMessage();
@@ -47,6 +52,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return emailSubscription;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public EmailSubscription cancelSubscription(int id) {
         EmailSubscription emailSubscription = this.getSubscription(id);
@@ -54,16 +64,32 @@ public class SubscriptionServiceImpl implements SubscriptionService {
         return emailSubscription;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<EmailSubscription> findAll() {
         return subscriptionRepository.findAll();
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @Override
     public EmailSubscription getSubscription(int id) {
         return subscriptionRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Email subscription not found"));
     }
 
+    /**
+     *
+     * @param emailMessage
+     * @param emailSubscription
+     * @return
+     * @throws Exception
+     */
     @Override
     public String sendEmail(EmailMessage emailMessage, EmailSubscription emailSubscription) throws Exception {
         emailMessage.setSubject("You're in. Welcome to adidas.");

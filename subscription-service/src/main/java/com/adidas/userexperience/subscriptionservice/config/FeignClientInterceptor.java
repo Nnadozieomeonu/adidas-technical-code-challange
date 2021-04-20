@@ -11,6 +11,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @Component
 public class FeignClientInterceptor implements RequestInterceptor {
 
+
     private static final String AUTHORIZATION_HEADER = "Authorization";
 
     public static String TOKEN;
@@ -18,10 +19,18 @@ public class FeignClientInterceptor implements RequestInterceptor {
     @Autowired
     private SubscriptionService subscriptionService;
 
+    /**
+     *
+     * @return
+     */
     public static String getBearerTokenHeader() {
         return ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
     }
 
+    /**
+     *
+     * @param requestTemplate
+     */
     @Override
     public void apply(RequestTemplate requestTemplate) {
 

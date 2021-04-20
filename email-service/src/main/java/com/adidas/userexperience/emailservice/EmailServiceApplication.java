@@ -10,6 +10,10 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableResourceServer
 public class EmailServiceApplication {
 
+	/**
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(EmailServiceApplication.class, args);
 	}

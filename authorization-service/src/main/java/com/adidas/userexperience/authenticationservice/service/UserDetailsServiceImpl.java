@@ -18,6 +18,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     UserDetailsRepository userDetailsRepository;
 
+    /**
+     *
+     * @param name
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         Optional<User> optionalUser = userDetailsRepository.findByUsername(name);

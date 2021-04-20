@@ -18,6 +18,10 @@ public class AuthUserDetail extends User implements UserDetails {
 
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
@@ -30,31 +34,55 @@ public class AuthUserDetail extends User implements UserDetails {
         return grantedAuthorityList;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getPassword() {
         return super.getPassword();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String getUsername() {
         return super.getUsername();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isAccountNonExpired() {
         return super.isAccountNonExpired();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isAccountNonLocked() {
         return super.isAccountNonLocked();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isCredentialsNonExpired() {
         return super.isCredentialsNonExpired();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean isEnabled() {
         return super.isEnabled();

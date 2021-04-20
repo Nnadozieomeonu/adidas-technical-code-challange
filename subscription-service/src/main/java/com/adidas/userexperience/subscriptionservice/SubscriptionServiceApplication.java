@@ -24,6 +24,10 @@ public class SubscriptionServiceApplication {
 	@Autowired
 	private SubscriptionService subscriptionService;
 
+	/**
+	 *
+	 * @return
+	 */
 	@Bean
 	public Consumer<EmailSubscriptionDto> notificationEventSupplier(){
 		return subscription -> {
@@ -33,6 +37,10 @@ public class SubscriptionServiceApplication {
 		};
 	}
 
+	/**
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(SubscriptionServiceApplication.class, args);
 	}
