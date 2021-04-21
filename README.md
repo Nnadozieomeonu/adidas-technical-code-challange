@@ -2,23 +2,74 @@
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image001.jpg?raw=true)
 
-This are my notes on how how to set up the underlisted service for testing, my microservice architecture comprises of the below microservice services.
+This are my notes on  how to set up the under listed service, technology for testing, my microservice architecture comprises of the below microservice services.
+
+[Spring-boot Framework](http://start.spring.io).
+This was the ORM Used.
 
 [Eureka Discovery Service](http://start.spring.io).
 
+I used Eureka discovery service to register all the microservices on in my cluster
+
 [API Gateway Service](http://start.spring.io).
+
+I used API gateway to route traffic to the appriopriate service based on the api route
 
 [Service Authorization service](http://start.spring.io).
 
+I used this service to secure every non public micorservice
+
 [Mysql Database Server](http://start.spring.io).
+
+Mysql used to as the RDMS for the authentication service
 
 [Rabbitmq Queuing Service](http://start.spring.io).
 
+This was an event-driven microservice, so the public service here was the producer with recieves
+request from the client application, provide feedback in almost realtime and sends the request via a cloud bus to the consumer which is subscription service
+to persist and send a confirmation email to the customer.
+
+[FeignClient](http://start.spring.io).
+
+This was used in the subscription service to send RestTemplate request to the email service to dispatch email.
+
+[H2 DB](http://start.spring.io).
+The subscription service used the H2 database as an in memory database
+
+[JUnit](http://start.spring.io).
+Used to write unit test for the public, subscribtion and email service
+
+[Hibernate](http://start.spring.io).
+This was the ORM Used.
+
 [Public Service](http://start.spring.io).
+This was a non authenticated service that recievces request from the client and sends to the secured services via event bus (rabbitmq)
 
 [Subscription Service](http://start.spring.io).
+This is the main service that handles business logic and database persistence
 
 [Email Service](http://start.spring.io).
+This service is responsible for sending email to the customer
+
+[Docker](http://docker.com).
+Containerization Application 
+
+[GIT](http://git.com).
+Source code repository
+
+[InteliJ](http://jetbrains.com).
+Code editor
+
+**Other artifacts would have implemented if time permits**
+[ELK](http://start.spring.io).
+*Elastic Search*
+*Logstash*
+*Kibana*
+To implement Distributed logging.
+[Cloud Configuration server with GIT](http://start.spring.io).
+[Hystrix Dashboard](http://start.spring.io).
+
+
 
 
 
