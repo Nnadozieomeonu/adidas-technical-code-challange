@@ -108,7 +108,7 @@ Application Configuration file for individual service
 
 *resources/application.yml*
 
- ```  
+ ```yaml  
 spring:  
   cloud:  
     stream:  
@@ -160,7 +160,7 @@ eureka:
 
 *resources/application.yml*
 
-```
+```yaml
 eureka:  
   client:  
     service-url:  
@@ -227,7 +227,7 @@ In the notification service I use mailtrap.io, you can your mailtrap.io configur
 
 *resources/application.yml*
 
-```
+```yaml
 
 spring:  
   mail:  
@@ -277,7 +277,7 @@ The authorization service is responsible for securing the subscription and email
 
 *resources/application.properties*
 
-```
+```properties
 server.port=0  
 spring.application.name=auth-service  
 spring.datasource.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&useSSL=false  
@@ -353,6 +353,18 @@ I setup the a local spring boot application api documentation using springfox sw
 
 *localhost:9090/api/v1/public/service*
 
+```json
+
+{
+    "email": "test@gmail.com",
+    "firstName": "Test",
+    "gender": "Male",
+    "consent": true,
+    "dob": "1991-04-28"
+}
+
+```
+
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/publicservice-validationerror.png?raw=true)
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/public-service-success.png?raw=true)
@@ -361,6 +373,18 @@ I setup the a local spring boot application api documentation using springfox sw
 **Secured Public Newsletter Subscription**
 
 *localhost:9090/api/v1/subscription/*
+
+```json
+
+{
+    "email": "test@gmail.com",
+    "firstName": "Test",
+    "gender": "Male",
+    "consent": true,
+    "dob": "1991-04-28"
+}
+
+```
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/Add%20your%20bearer%20token.png?raw=true)
 
