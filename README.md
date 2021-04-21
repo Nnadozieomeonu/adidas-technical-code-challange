@@ -335,6 +335,55 @@ I setup the a local spring boot application api documentation using springfox sw
 
 ## Application Request Screenshot
 
+**Generate API Token**
+
+*localhost:9090/oauth/token*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/Authorization%20Username%20and%20password.png?raw=true)
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/generate%20API%20Token%20response.png)
+
+**Validate Api Token**
+
+*localhost:9090/oauth/check_token?token=622aa043-c22b-474d-a423-2f40e05ddb38*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/Validate%20bearer%20token.png?raw=true)
+
+**Public Newsletter Subscription**
+
+*localhost:9090/api/v1/public/service*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/publicservice-validationerror.png?raw=true)
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/public-service-success.png?raw=true)
+
+
+**Secured Public Newsletter Subscription**
+
+*localhost:9090/api/v1/subscription/*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/Add%20your%20bearer%20token.png?raw=true)
+
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/Authenticated-service.png?raw=true)
+
+**Get All Newsletter Subscription**
+
+*localhost:9090/api/v1/subscription/*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/get%20all%20sub.png?raw=true)
+
+**Find a Newsletter Subscription by Id**
+
+*localhost:9090/api/v1/subscription/1*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/get%20all%20sub.png?raw=true)
+
+**Cancel a Newsletter Subscription by id **
+
+*localhost:9090/api/v1/subscription/cancel/2*
+
+![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/cancel%20subscription.png?raw=true)
 
 
 
