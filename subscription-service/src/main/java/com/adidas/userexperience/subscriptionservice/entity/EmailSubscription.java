@@ -32,4 +32,9 @@ public class EmailSubscription implements Serializable {
 
     @Column(nullable = false)
     private boolean consent;
+
+    @Basic(optional = false)
+    @Column(name = "created_on")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created_on;
 }
