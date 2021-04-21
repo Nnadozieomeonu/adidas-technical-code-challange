@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name="emailsubscriptions")
@@ -28,7 +28,7 @@ public class EmailSubscription implements Serializable {
     private String gender;
 
     @Column(nullable = false)
-    private Date dob;
+    private java.sql.Date dob;
 
     @Column(nullable = false)
     private boolean consent;
