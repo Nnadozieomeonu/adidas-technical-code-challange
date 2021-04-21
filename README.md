@@ -415,3 +415,34 @@ I setup the a local spring boot application api documentation using springfox sw
 
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image002.png?raw=true)
+
+## Task Mission Statement
+
+With the information given and your own additional assumption, you have to develope a
+**SUBSRIPTION SYSTEM.** System will be composed of three microservices:
+
+*Public Service:* 
+
+Backend for Frontend microservice to be used by UI frontend.
+
+*Subscription Service:* 
+
+microsevice implementing subscription logic, including persistence of subscription
+data in a database and email notification to confirm process is completed.
+
+*Email Service:* 
+
+Microservice implementing email notifications. No need to implement real email
+send process, you can create Mock interface.
+
+Subscription System should provide these operations:
+
+*Create new subscription*
+
+*Cancel exisiting subscription* 
+
+*Get details of a subscription* 
+
+*Get all subscription* 
+
+
