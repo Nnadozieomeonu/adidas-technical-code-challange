@@ -25,9 +25,6 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Autowired
     private EmailClient emailClient;
 
-    private final Logger log = LoggerFactory.getLogger(SubscriptionServiceImpl.class);
-
-
     /**
      *
      * @param subscription
