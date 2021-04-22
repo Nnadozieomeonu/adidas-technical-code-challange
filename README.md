@@ -482,4 +482,4 @@ Subscription System should provide these operations:
 
 ## Thank you
 
-**Thank you!! :blush: **
+**Thank you!!** :blush:
