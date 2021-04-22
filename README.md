@@ -11,7 +11,7 @@
 6. [Application Request Screenshot](#Application-Request-Screenshot)
 7. [Improvements to be worked on if i had an extra 2days for the task](#Improvements-to-be-worked-on-if-i-had-an-extra-2days-for-the-task)
 8. [Task Mission Statement](#Task-Mission-Statement)
-9. [Thank you!!](#Thank-you!!)
+9. [Thank you](#Thank-you)
 
 ## Introduction and technology list
 
@@ -479,4 +479,6 @@ Subscription System should provide these operations:
 
 *Get all subscription* 
 
-## Thank you!!
+## Thank you
+
+**Thank you!!**
