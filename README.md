@@ -410,8 +410,27 @@ I setup the a local spring boot application api documentation using springfox sw
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/cancel%20subscription.png?raw=true)
 
 
+**Improvements to be done**
 
+Use Enum to define the gender type
 
+```java
+
+enum Gender{ MALE, FEMALE }
+
+```
+
+**Implement Rate Limiter on the API gate way to curb DOS attack**
+
+**Use a configuration Service to have a centralized point of service cconfiguration management on github**
+
+**Implement ELK stack for centralized logging***
+
+**Add logger to all the service and log meaningful events for debuging**
+
+**Format The date of birth return data in the subscription entity*
+
+**Add a created at field in the subscription entity*
 
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image002.png?raw=true)
