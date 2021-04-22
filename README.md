@@ -12,6 +12,7 @@
 7. [Improvements to be worked on if i had an extra 2days for the task](#Improvements-to-be-worked-on-if-i-had-an-extra-2days-for-the-task)
 8. [Task Mission Statement](#Task-Mission-Statement)
 9. [Thank you](#Thank-you)
+10.[Swagger API Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0).
 
 ## Introduction and technology list
 
