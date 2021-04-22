@@ -2,6 +2,19 @@
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image001.jpg?raw=true)
 
+# Table of Contents
+1. [Introduction and technology list](#Introduction and technology list)
+2. [Manual Set-up Guide](#Manual Set-up Guide)
+3. [Docker Set-up Guide](#Docker Set-up Guide)
+4. [Microservice architecture diagram](#Microservice architecture diagram)
+5. [Jenkins Pipeline Sketch](#Jenkins Pipeline Sketch)
+6. [Application Request Screenshot](#Application Request Screenshot)
+7. [Improvements to be worked on if i had an extra 2days for the task](#Improvements to be worked on if i had an extra 2days for the task)
+8. [Task Mission Statement](#Task Mission Statement)
+9. [Thank you!!](#Thank you!!)
+
+## Introduction and technology list
+
 These are my notes on  how to set up the under listed service, technology for testing, my microservice architecture comprises the below microservice services.
 
 [Spring-boot Framework](http://start.spring.io).
@@ -466,4 +479,4 @@ Subscription System should provide these operations:
 
 *Get all subscription* 
 
-
+## Thank you!!
