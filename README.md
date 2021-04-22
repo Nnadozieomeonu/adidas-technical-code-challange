@@ -446,6 +446,9 @@ enum Gender{ MALE, FEMALE }
 
 **Fix the issue in the API gate way that make the first 4 request unresponsive**
 
+**Fix the issue in the API gate way that make the first 4 request unresponsive**
+
+**Create a feign clinent to call the get token service from the suthentication service for the public service to be able to reach the email service**
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image002.png?raw=true)
 
