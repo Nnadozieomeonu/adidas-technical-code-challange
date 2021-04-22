@@ -428,9 +428,11 @@ enum Gender{ MALE, FEMALE }
 
 **Add logger to all the service and log meaningful events for debuging**
 
-**Format The date of birth return data in the subscription entity*
+**Format The date of birth return data in the subscription entity**
 
-**Add a created at field in the subscription entity*
+**Add a created at field in the subscription entity**
+
+**Fix the issue in the API gate way that make the first 4 request unresponsive**
 
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image002.png?raw=true)
