@@ -4,7 +4,7 @@
 
 # Table of Contents
 1. [Introduction and technology list](#Introduction-and-technology-list)
-2. [Manual Set-up Guide](#Manual Set-up Guide)
+2. [Manual Set-up Guide](#Manual-Set-up-Guide)
 3. [Docker Set-up Guide](#Docker Set-up Guide)
 4. [Microservice architecture diagram](#Microservice architecture diagram)
 5. [Jenkins Pipeline Sketch](#Jenkins Pipeline Sketch)
