@@ -410,7 +410,7 @@ I setup the a local spring boot application api documentation using springfox sw
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/cancel%20subscription.png?raw=true)
 
 
-**Improvements to be done**
+##Improvements to be worked on if i had an extra 2days for the task
 
 Use Enum to define the gender type
 
