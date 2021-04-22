@@ -1,8 +1,8 @@
-## Adidas Technical Challenge [Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0)
+## Adidas Technical Challenge [Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0) :thought_balloon:
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image001.jpg?raw=true)
 
-# Table of Contents
+# Table of Contents :thought_balloon:
 1. [Introduction and technology list](#Introduction-and-technology-list)
 2. [Manual Set-up Guide](#Manual-Set-up-Guide)
 3. [Docker Set-up Guide](#Docker-Set-up-Guide)
@@ -14,7 +14,7 @@
 9. [Thank you](#Thank-you)
 10. [Swagger API Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0).
 
-## Introduction and technology list
+## Introduction and technology list :thought_balloon:
 
 These are my notes on  how to set up the under listed service, technology for testing, my microservice architecture comprises the below microservice services.
 
@@ -102,7 +102,7 @@ To implement Distributed logging.
 
 
 
-## Manual Set-up Guide
+## Manual Set-up Guide :thought_balloon:
 
 1. Clone The master branch  using the below command  `` git clone https://github.com/Nnadozieomeonu/adidas-technical-code-challange.git ``
 2. make sure you have docker run on your machine [Docker website](https://www.docker.com/)
@@ -341,13 +341,11 @@ ERROR: Service 'authorization-service' failed to build
 
 I setup the a local spring boot application api documentation using springfox swagger Docket dependecy, however for the authenticated services it was not made public. so i dropped the service and documented a rough documentation online [API On Swagger.io Documentation](https://app.swaggerhub.com/apis/Nnadozieomeonu/Adidas-Technical-Challenge/1.0.0)
 
-## Microservice architecture diagram
+## Microservice architecture diagram :thought_balloon:
 
-## Jenkins Pipeline Sketch
+## Jenkins Pipeline Sketch :thought_balloon:
 
-## Jenkins Pipeline Sketch
-
-## Application Request Screenshot
+## Application Request Screenshot :thought_balloon:
 
 **Generate API Token**
 
@@ -424,7 +422,7 @@ I setup the a local spring boot application api documentation using springfox sw
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/cancel%20subscription.png?raw=true)
 
 
-## Improvements to be worked on if i had an extra 2days for the task
+## Improvements to be worked on if i had an extra 2days for the task :thought_balloon:
 
 Use Enum to define the gender type
 
@@ -451,7 +449,7 @@ enum Gender{ MALE, FEMALE }
 
 ![alt adidas](https://github.com/Nnadozieomeonu/lacecart/blob/master/image002.png?raw=true)
 
-## Task Mission Statement
+## Task Mission Statement :thought_balloon:
 
 With the information given and your own additional assumption, you have to develope a
 **SUBSRIPTION SYSTEM.** System will be composed of three microservices:
@@ -480,6 +478,6 @@ Subscription System should provide these operations:
 
 *Get all subscription* 
 
-## Thank you
+## Thank you :thought_balloon:
 
 **Thank you!!** :blush:
